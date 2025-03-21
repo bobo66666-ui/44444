@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spiral Drawing</title>
+    <style>
+        body { margin: 0; overflow: hidden; }
+        canvas { display: block; background-color: #f0f0f0; }
+    </style>
+</head>
+<body>
+<script>
+    const canvas = document.createElement('canvas');
+    document.body.appendChild(canvas);
+    const ctx = canvas.getContext('2d');
+
+    let width = window.innerWidth;
+    let height = window.innerHeight;
+
+    function resizeCanvas() {
+        width = window.innerWidth;
+        height = window.innerHeight;
+        canvas.width = width;
+        canvas.height = height;
+        drawSpiral();
+    }
+
+    window.addEventListener('resize', resizeCanvas);
+
+    function drawSpiral() {
+        ctx.clearRect(0, 0, width, height);
+        ctx.strokeStyle = '#ff6347';
+        ctx.lineWidth = 1;
+        ctx.beginPath();
+
+        let x = width / 2;
+        let y = height / 2;
+        ctx.moveTo(x, y);
+
+        for (let i = 0; i < 250; i++) {
+            const stepSize = 3 * i;
+            const angle = ((i % 36) * Math.PI) / 180;
+            x += stepSize * Math.cos(angle);
+            y -= stepSize * Math.sin(angle);
+
+            ctx.lineTo(x, y);
+        }
+
+        ctx.stroke();
+    }
+
+    resizeCanvas();
+</script>
+</body>
+</html>
+
+
