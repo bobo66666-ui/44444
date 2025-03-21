@@ -36,15 +36,19 @@
 
         let x = width / 2;
         let y = height / 2;
+        let angle = 0;
+
         ctx.moveTo(x, y);
 
         for (let i = 0; i < 250; i++) {
             const stepSize = 3 * i;
-            const angle = ((i % 36) * Math.PI) / 180;
             x += stepSize * Math.cos(angle);
             y -= stepSize * Math.sin(angle);
 
             ctx.lineTo(x, y);
+
+            // Update the angle based on the original turtle code logic
+            angle += (Math.PI / 180) * (20 - 175); // Convert degrees to radians
         }
 
         ctx.stroke();
